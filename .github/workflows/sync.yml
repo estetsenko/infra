@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - 'config/dependabot.yml'
+      - '../../sync/dependabot.yml'
 
 jobs:
   sync:

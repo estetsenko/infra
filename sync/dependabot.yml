@@ -4,7 +4,7 @@ on:
     branches:
       - main
   paths:
-    - 'config/dependabot.yml'
+    - 'sync/dependabot.yml'
 
 jobs:
   sync:
@@ -17,7 +17,7 @@ jobs:
         run: |
           for repo in "estetsenko/first" "estetsenko/second"; do
             gh repo clone $repo
-            cp config/dependabot.yml $repo/.github/
+            cp sync/dependabot.yml $repo/.github/
             cd $repo
             git add .github/dependabot.yml
             git commit -m "Update Dependabot config"
