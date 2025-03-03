@@ -17,6 +17,7 @@ jobs:
         run: |
           for repo in "estetsenko/first" "estetsenko/second"; do
             gh repo clone $repo
+            mkdir $repo/.github/
             cp dependabot.yml $repo/.github/
             cd $repo
             git add .github/dependabot.yml
