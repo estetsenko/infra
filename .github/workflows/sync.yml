@@ -25,7 +25,7 @@ jobs:
             branch="sync-$RANDOM"
             git switch -c $branch
             git commit -m "Update Dependabot config"
-            gh pr create -B main -H $branch --title 'Update dependabot config'
+            gh pr create -B main -H $branch -f
             cd ..
           done
         env:
