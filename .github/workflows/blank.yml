@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-  paths:
-    - 'config/dependabot.yml'
+    paths:
+      - 'config/dependabot.yml'
 
 jobs:
   sync:
