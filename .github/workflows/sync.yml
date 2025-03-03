@@ -32,4 +32,4 @@ jobs:
           gh repo fork --clone estetsenko/first 
           gh pr create -B main -H staging --title "The fix" --body "This fixes the issue"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
