@@ -16,7 +16,7 @@ jobs:
       - name: Copy config to other repos
         run: |
           for repo in "estetsenko/first" "estetsenko/second"; do
-            gh repo clone $repo
+            gh repo clone $repo $repo
             cp dependabot.yml $repo/.github/
             cd $repo
             git add .github/dependabot.yml
