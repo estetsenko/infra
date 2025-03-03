@@ -13,20 +13,20 @@ jobs:
       - name: Checkout central repo
         uses: actions/checkout@v4
 
-      - name: Copy config to other repos
-        run: |
-          for repo in "estetsenko/first" "estetsenko/second"; do
-            gh repo clone $repo $repo
-            mkdir $repo/.github/
-            cp dependabot.yml $repo/.github/
-            cd $repo
-            git config --global user.name "${{ github.actor }}"
-            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-            git add .github/dependabot.yml
-            git commit -m "Update Dependabot config"
-#            gh pr create -B main -H main --title 'Merge ${{ github.repository }} into $repo' --body 'Update dependabot config'
-            cd ..
-          done
+#      - name: Copy config to other repos
+#        run: |
+#          for repo in "estetsenko/first" "estetsenko/second"; do
+#            gh repo clone $repo $repo
+#            mkdir $repo/.github/
+#            cp dependabot.yml $repo/.github/
+#            cd $repo
+#            git config --global user.name "${{ github.actor }}"
+#            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+#            git add .github/dependabot.yml
+#            git commit -m "Update Dependabot config"
+##            gh pr create -B main -H main --title 'Merge ${{ github.repository }} into $repo' --body 'Update dependabot config'
+#            cd ..
+#          done
       - name: PR
         run: gh pr create --title "The fix" --body "This fixes the issue"
         env:
