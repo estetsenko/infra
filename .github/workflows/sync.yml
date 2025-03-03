@@ -27,5 +27,3 @@ jobs:
             gh pr create -B main -H main --title 'Merge ${{ github.repository }} into $repo' --body 'Update dependabot config'
             cd ..
           done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
