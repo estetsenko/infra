@@ -20,6 +20,8 @@ jobs:
             mkdir $repo/.github/
             cp dependabot.yml $repo/.github/
             cd $repo
+            git config --global user.name "${{ github.actor }}"
+            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
             git add .github/dependabot.yml
             git commit -m "Update Dependabot config"
             gh pr create -R -B main -H main --title 'Merge ${{ github.repository }} into $repo' --body 'Update dependabot config'
