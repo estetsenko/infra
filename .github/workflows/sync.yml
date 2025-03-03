@@ -29,6 +29,6 @@ jobs:
 #            cd ..
 #          done
       - name: PR
-        run: gh pr create --base staging --title "The fix" --body "This fixes the issue"
+        run: gh pr create -B staging -H main --title "The fix" --body "This fixes the issue"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
