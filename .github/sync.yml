@@ -1,0 +1,28 @@
+name: Sync Dependabot Config
+on:
+  push:
+    branches:
+      - main
+  paths:
+    - 'sync.yml'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout central repo
+        uses: actions/checkout@v4
+
+      - name: Copy config to other repos
+        run: |
+          for repo in "org/repo1" "org/repo2"; do
+            gh repo clone $repo
+            cp dependabot.yml $repo/.github/
+            cd $repo
+            git add .github/dependabot.yml
+            git commit -m "Update Dependabot config"
+            git push
+            cd ..
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}  # Use a GitHub PAT with write access
