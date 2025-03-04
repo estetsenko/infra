@@ -2,7 +2,7 @@ name: Sync Dependabot Config
 on:
   push:
     branches:
-      - staging
+      - main
     paths:
       - 'dependabot.yml'
 
