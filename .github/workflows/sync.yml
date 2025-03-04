@@ -16,7 +16,7 @@ jobs:
         run: |
           for repo in "estetsenko/first" "estetsenko/second"; do
             gh repo clone $repo $repo
-            mkdir $repo/.github/
+            mkdir -p $repo/.github/
             cp dependabot.yml $repo/.github/
             cd $repo
             git config --global user.name "${{ github.actor }}"
