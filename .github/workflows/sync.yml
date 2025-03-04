@@ -12,14 +12,23 @@ jobs:
     steps:
       - name: Checkout central repo
         uses: actions/checkout@v4
-      - name: Pushes test file
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        with:
-          source_file: 'dependabot.yml'
-          destination_repo: 'estetsenko/first'
-          destination_folder: '.github'
-          user_email: 'i@estetsenko.com'
-          user_name: 'estetsenko'
-          commit_message: 'A custom message for the commit'
+      - name: Copy config to other repos
+        run: |
+          for repo in "estetsenko/first" "estetsenko/second"; do
+            gh repo clone $repo $repo
+            mkdir $repo/.github/
+            cp dependabot.yml $repo/.github/
+            cd $repo
+            git config --global user.name "${{ github.actor }}"
+            git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+            git add .github/dependabot.yml
+            branch="sync-$RANDOM"
+            git switch -c $branch
+            git commit -m "Update Dependabot config"
+            git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$repo
+            git push --set-upstream origin $branch
+            gh pr create -B main -H $branch -f -R $repo
+            cd ..
+          done
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
