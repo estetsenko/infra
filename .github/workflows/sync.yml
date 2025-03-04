@@ -31,4 +31,4 @@ jobs:
             cd ..
           done
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PATold }}
