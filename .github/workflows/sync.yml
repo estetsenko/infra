@@ -22,4 +22,4 @@ jobs:
           user_name: 'estetsenko'
           commit_message: 'A custom message for the commit'
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.PAT }}
