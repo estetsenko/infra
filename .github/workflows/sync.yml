@@ -26,7 +26,7 @@ jobs:
             git switch -c $branch
             git commit -m "Update Dependabot config"
             git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$repo
-            git push 
+            git push --set-upstream origin $branch
             gh pr create -B main -H $branch -f -R $repo
             cd ..
           done
