@@ -7,4 +7,5 @@ updates:
       interval: "weekly"
     groups:
       spring:
-        patterns: "org.springframework.*:*"
+        patterns:
+          - "org.springframework.*:*"
