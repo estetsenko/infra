@@ -5,6 +5,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "org.springframework:*"
-        versions: [ "(,3.3.0]" ]
+    groups:
+      spring:
+        patterns: "org.springframework.*:*"
