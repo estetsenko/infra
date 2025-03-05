@@ -14,7 +14,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Copy config to other repos
         run: |
-          repos="${{ vars.REPOSITORIES }}"
           while IFS= read -r repo_name; do
             repo=${repo_name//[$'\t\r\n ']}
             gh repo clone $repo $repo
@@ -31,6 +30,6 @@ jobs:
             git push --set-upstream origin $branch
             gh pr create -B main -H $branch -f -R $repo
             popd
-          done <<< "$repos"
+          done <<< "${{ vars.REPOSITORIES }}"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
