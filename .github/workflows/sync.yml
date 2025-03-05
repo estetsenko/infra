@@ -15,7 +15,8 @@ jobs:
       - name: Copy config to other repos
         run: |
           repos="${{ vars.REPOSITORIES }}"
-          while IFS= read -r repo; do
+          while IFS= read -r repo_name; do
+            repo=${repo_name//[$'\t\r\n ']}
             gh repo clone $repo $repo
             mkdir -p $repo/.github/
             cp dependabot.yml $repo/.github/
