@@ -8,4 +8,7 @@ updates:
     groups:
       spring:
         patterns:
-          - "org.springframework.*:*"
+          - "org.springframework*"
+        update-types:
+          - "major"
+          - "minor"
